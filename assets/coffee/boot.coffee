@@ -6,7 +6,7 @@ bootState =
 
 	create: ->
 		# set the stage
-		game.stage.backgroundColor = '#ffffff'
+		game.stage.backgroundColor = '#a4e8fc'
 		game.physics.startSystem Phaser.Physics.ARCADE
 
 		# start the load state

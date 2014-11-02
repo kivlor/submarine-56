@@ -1,5 +1,5 @@
 # build the game
-game = new Phaser.Game 256, 240, Phaser.AUTO, 'stage'
+game = new Phaser.Game 512, 480, Phaser.AUTO, 'stage'
 
 game.state.add 'boot', bootState
 game.state.add 'load', loadState
