@@ -8,7 +8,9 @@ playState =
 		game.world.setBounds 0, 0, game.world.width*1.5, game.world.height*1.5
 
 		# create world
+		@.createWalls()
 		@.createOcean()
+		
 		@.createSub()
 		@.createTorpedo()
 		@.createSurface()
@@ -17,6 +19,7 @@ playState =
 		game.camera.follow @.sub, @.camera.FOLLOW_LOCKON
 
 	update: ->
+		game.physics.arcade.collide @.sub, @.walls
 		game.physics.arcade.collide @.sub, @.floor
 		game.physics.arcade.collide @.sub, @.sky
 
@@ -25,6 +28,18 @@ playState =
 	render: ->
 		# game.debug.cameraInfo game.camera, 20, 20
 		game.debug.spriteCoords @.sub, 20, 400
+	
+	createWalls: ->
+		# setup the wall group
+		@.walls = game.add.group()
+		@.walls.enableBody = yes
+
+		# build all the walls!
+		leftWall = game.add.tileSprite -1, 0, 1, game.world.height, 'trans', 0, @.walls
+		rightWall = game.add.tileSprite game.world.width, 0, game.world.width+1, game.world.height, 'trans', 0, @.walls
+
+		# let's make sure they don't move
+		@.walls.setAll 'body.immovable', yes
 
 	createOcean: ->
 		@.ocean = game.add.tileSprite 0, 96, game.world.width, game.world.height, 'ocean'

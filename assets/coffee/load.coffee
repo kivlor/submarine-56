@@ -7,6 +7,7 @@ loadState =
 		game.load.setPreloadSprite progress
 
 		# load the sprites
+		game.load.image 'trans', '/images/trans.png'
 		game.load.image 'ocean', '/images/ocean.png'
 		game.load.image 'floor', '/images/floor.png'
 		game.load.image 'sand', '/images/sand.png'
