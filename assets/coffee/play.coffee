@@ -83,11 +83,11 @@ playState =
 	moveSub: ->
 		# handle basic movement
 		if @.cursor.left.isDown
-			@.sub.body.velocity.x = -100;
+			@.sub.body.velocity.x = -150;
 			@.sub.animations.play 'left'
 			@.sub.direction = 'left'
 		else if @.cursor.right.isDown
-			@.sub.body.velocity.x = 100;
+			@.sub.body.velocity.x = 150;
 			@.sub.animations.play 'right'
 			@.sub.direction = 'right'
 		else
