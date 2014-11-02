@@ -1,3 +1,5 @@
+gameSize = 1
+
 # create the play state
 playState =
 	create: ->
@@ -5,7 +7,7 @@ playState =
 		@.cursor = game.input.keyboard.createCursorKeys()
 		@.space = game.input.keyboard.addKey Phaser.Keyboard.SPACEBAR
 
-		game.world.setBounds 0, 0, game.world.width*1.5, game.world.height*1.5
+		game.world.setBounds 0, 0, game.world.width*gameSize, game.world.height*gameSize
 
 		# create world
 		@.createWalls()
