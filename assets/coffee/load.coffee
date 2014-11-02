@@ -8,6 +8,9 @@ loadState =
 
 		# load the sprites
 		game.load.image 'trans', '/images/trans.png'
+
+		game.load.image 'logo', '/images/logo.png'
+
 		game.load.image 'ocean', '/images/ocean.png'
 		game.load.image 'floor', '/images/floor.png'
 		game.load.image 'sand', '/images/sand.png'
@@ -15,7 +18,8 @@ loadState =
 		game.load.spritesheet 'surface', '/images/surface.png', 12, 4
 
 		game.load.image 'torpedo', '/images/torpedo.png'
-		game.load.spritesheet 'submarine', '/images/submarine.png', 118, 96
+		game.load.spritesheet 'sub56', '/images/sub56.png', 118, 96
+		game.load.spritesheet 'enemysub', '/images/enemysub.png', 118, 96
 
 	create: ->
 		# start the menu state

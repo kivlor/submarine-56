@@ -1,4 +1,4 @@
-gameSize = 1
+gameSize = 4
 
 # create the play state
 playState =
@@ -13,7 +13,7 @@ playState =
 		@.createWalls()
 		@.createOcean()
 		
-		@.createSub()
+		@.createPlayer()
 		@.createTorpedo()
 		@.createSurface()
 
@@ -25,11 +25,11 @@ playState =
 		game.physics.arcade.collide @.sub, @.floor
 		game.physics.arcade.collide @.sub, @.sky
 
-		@.moveSub()
+		@.movePlayer()
 
 	render: ->
 		# game.debug.cameraInfo game.camera, 20, 20
-		game.debug.spriteCoords @.sub, 20, 400
+		# game.debug.spriteCoords @.sub, 20, 400
 	
 	createWalls: ->
 		# setup the wall group
@@ -44,32 +44,32 @@ playState =
 		@.walls.setAll 'body.immovable', yes
 
 	createOcean: ->
+		# add the ocean.. of bubbles
 		@.ocean = game.add.tileSprite 0, 96, game.world.width, game.world.height, 'ocean'
 		game.physics.arcade.enable @.ocean
 		@.ocean.body.immovable = yes
 
+		# add the floor
 		@.floor = game.add.tileSprite 0, game.world.height-16, game.world.width, game.world.height, 'floor'
 		game.physics.arcade.enable @.floor
 		@.floor.body.immovable = yes
 
+		# add the sand above the floor
 		@.sand = game.add.tileSprite 0, game.world.height-32, game.world.width, game.world.height, 'sand'
 		game.physics.arcade.enable @.sand
 		@.sand.body.immovable = yes
 
 	createSurface: ->
-		@.surface = game.add.tileSprite 0, 96, game.world.width, 4, 'surface'
-		@.surface.animations.add 'waves', [0, 1], 24, yes
+		@.surface = game.add.tileSprite 0, 96, game.world.width, 4, 'surface', 0
+		@.surface.animations.add 'waves', [0, 1], 1, yes
 		@.surface.animations.play 'waves'
-		
-		game.physics.arcade.enable @.surface
-		@.surface.body.immovable = yes
 
 		@.sky = game.add.tileSprite 0, 0, game.world.width, 36, 'sky'
 		game.physics.arcade.enable @.sky
 		@.sky.body.immovable = yes
 
-	createSub: ->
-		@.sub = game.add.sprite game.world.centerX, 132, 'submarine'
+	createPlayer: ->
+		@.sub = game.add.sprite game.world.centerX, 132, 'sub56'
 		@.sub.anchor.setTo 0.5, 1
 		@.sub.animations.add 'left', [0, 1, 2, 3], 24, yes
 		@.sub.animations.add 'right', [4, 5, 6, 7], 24, yes
@@ -80,7 +80,7 @@ playState =
 		game.physics.arcade.enable @.sub
 		@.sub.body.gravity.y = 50
 
-	moveSub: ->
+	movePlayer: ->
 		# handle basic movement
 		if @.cursor.left.isDown
 			@.sub.body.velocity.x = -150;
@@ -102,6 +102,10 @@ playState =
 
 		# handle fire
 		@.space.onDown.addOnce @.fireTorpedo, @
+
+	killPlayer: ->
+		# back to the menu
+		game.state.start 'menu'
 
 	createTorpedo: ->
 		@.torpedos = game.add.group()
