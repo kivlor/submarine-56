@@ -1,3 +1,3 @@
 ### Submarine 56
 
-My tiny game/experiment built while at camp.js 2014 
+A tiny game built while at camp.js 2014.
